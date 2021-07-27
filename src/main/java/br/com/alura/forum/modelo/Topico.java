@@ -1,27 +1,47 @@
 package br.com.alura.forum.modelo;
 
 
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
-public class Topico {
+@Data
+@Entity
+@Table
+public class Topico implements Serializable {
 
+	//@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private Long id;
-	private String titulo;
-	private String mensagem;
-	private LocalDateTime dataCriacao = LocalDateTime.now();
-	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
-	private Usuario autor;
-	private Curso curso;
-	private List<Resposta> respostas = new ArrayList<>();
 
-	public Topico(String titulo, String mensagem, Curso curso) {
-		this.titulo = titulo;
-		this.mensagem = mensagem;
-		this.curso = curso;
-	}
+	//@Column(name = "TITULO")
+	private String titulo;
+
+	//@Column( = "MENSAGEM")
+	private String mensagem;
+
+	private LocalDateTime dataCriacao = LocalDateTime.now();
+
+	@Enumerated(EnumType.STRING)
+	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
+
+	@ManyToOne
+	//@Column(name = "AUTOR")
+	private Usuario autor;
+
+	@ManyToOne
+	//@Column(name = "CURSO")
+	private Curso curso;
+
+	@OneToMany(mappedBy = "topico")
+	//@Column(name = "RESPOSTAS")
+	private List<Resposta> respostas = new ArrayList<>();
 
 	@Override
 	public int hashCode() {
