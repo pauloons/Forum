@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @Entity
@@ -47,6 +46,10 @@ public class Topico implements Serializable {
 		this.titulo = titulo;
 		this.mensagem = mensagem;
 		this.curso = curso;
+	}
+
+	public Topico() {
+
 	}
 
 	@Override
