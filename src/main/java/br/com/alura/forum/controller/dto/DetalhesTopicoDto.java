@@ -1,6 +1,5 @@
 package br.com.alura.forum.controller.dto;
 
-import br.com.alura.forum.modelo.Resposta;
 import br.com.alura.forum.modelo.StatusTopico;
 import br.com.alura.forum.modelo.Topico;
 import lombok.Data;

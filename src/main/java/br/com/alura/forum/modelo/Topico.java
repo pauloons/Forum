@@ -49,7 +49,6 @@ public class Topico implements Serializable {
 	}
 
 	public Topico() {
-
 	}
 
 	@Override
