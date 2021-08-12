@@ -27,6 +27,7 @@ public class TopicosController {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Transactional
     @GetMapping
     public List<TopicoDto> lista(String nomeCurso) {
         if (nomeCurso == null) {
@@ -38,6 +39,7 @@ public class TopicosController {
         }
     }
 
+    @Transactional
     @PostMapping
     public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm form, UriComponentsBuilder uriBuilder) {
         Topico topico = form.converter(cursoRepository);
@@ -47,6 +49,7 @@ public class TopicosController {
         return ResponseEntity.created(uri).body(new TopicoDto(topico));
     }
 
+    @Transactional
     @GetMapping("/{id}")
     public DetalhesTopicoDto TopicoDetalhar(@PathVariable Long id) {
 
@@ -59,6 +62,13 @@ public class TopicosController {
     public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoForm form) {
         Topico topico = form.atualizar(id, topicoRepository);
         return ResponseEntity.ok(new TopicoDto(topico));
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+        topicoRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
 
