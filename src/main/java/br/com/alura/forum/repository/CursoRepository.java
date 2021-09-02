@@ -1,10 +1,11 @@
 package br.com.alura.forum.repository;
 
-import br.com.alura.forum.modelo.Curso;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import br.com.alura.forum.modelo.Curso;
+
 public interface CursoRepository extends JpaRepository<Curso, Long> {
 
-    Curso findByNome(String nome);}
+	Curso findByNome(String nome);
+
+}

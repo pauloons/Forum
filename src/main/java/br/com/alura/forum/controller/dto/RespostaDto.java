@@ -1,23 +1,37 @@
 package br.com.alura.forum.controller.dto;
 
-import br.com.alura.forum.modelo.Resposta;
-import lombok.Data;
-
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Data
-public class RespostaDto implements Serializable {
+import br.com.alura.forum.modelo.Resposta;
 
-    private Long id;
-    private String mensagem;
-    private String NomeAutor;
-    private LocalDateTime DataCriacao;
+public class RespostaDto {
 
-    public RespostaDto(Resposta resposta) {
-        this.id = resposta.getId();
-        this.mensagem = resposta.getMensagem();
-        this.DataCriacao = resposta.getDataCriacao();
-        this.NomeAutor = resposta.getAutor().getNome();
-    }
+	private Long id;
+	private String mensagem;
+	private LocalDateTime dataCriacao;
+	private String nomeAutor;
+	
+	public RespostaDto(Resposta resposta) {
+		this.id = resposta.getId();
+		this.mensagem = resposta.getMensagem();
+		this.dataCriacao = resposta.getDataCriacao();
+		this.nomeAutor = resposta.getAutor().getNome();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
+	
 }
